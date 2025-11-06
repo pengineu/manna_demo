@@ -1,2 +1,2 @@
-# manna_demo
+# manna
 
