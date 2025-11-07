@@ -1,0 +1,1 @@
+ C:\\Users\\sinja\\Desktop\\sinjae\\coding\\manna\\.dart_tool\\flutter_build\\bc8357ec983fcef578e5ee994e1f937f\\native_assets.json: 
