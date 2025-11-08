@@ -17,10 +17,79 @@ class OnboardingScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        bottom: false,
-        child: Stack(
-          children: [
+      body: Stack(
+        children: [
+          // iOS Status Bar (44px height at top)
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 44 * scaleY,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.8),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 20,
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Time (9:41)
+                  Padding(
+                    padding: EdgeInsets.only(left: 27 * scaleX),
+                    child: Text(
+                      '9:41',
+                      style: GoogleFonts.inter(
+                        fontSize: 15 * scaleX,
+                        fontWeight: FontWeight.w600,
+                        color: const Color(0xFF1F2024),
+                        letterSpacing: -0.165 * scaleX,
+                      ),
+                    ),
+                  ),
+                  // Status icons (right side)
+                  Padding(
+                    padding: EdgeInsets.only(right: 14 * scaleX),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.signal_cellular_alt,
+                          size: 14 * scaleX,
+                          color: const Color(0xFF1F2024),
+                        ),
+                        SizedBox(width: 4 * scaleX),
+                        Icon(
+                          Icons.wifi,
+                          size: 14 * scaleX,
+                          color: const Color(0xFF1F2024),
+                        ),
+                        SizedBox(width: 4 * scaleX),
+                        Icon(
+                          Icons.battery_full,
+                          size: 14 * scaleX,
+                          color: const Color(0xFF1F2024),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          // Content area (144px height at top, starting from 44px)
+          Positioned(
+            top: 44 * scaleY,
+            left: 0,
+            right: 0,
+            height: 100 * scaleY,
+            child: Container(
+              color: Colors.transparent,
+            ),
+          ),
             // Center image (181x181) - positioned at x: 110, y: 255.59 (adjusted for status bar)
             Positioned(
               left: (110 * scaleX),
@@ -30,18 +99,6 @@ class OnboardingScreen extends StatelessWidget {
                 width: 181 * scaleX,
                 height: 181 * scaleY,
                 fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    width: 181 * scaleX,
-                    height: 181 * scaleY,
-                    color: const Color(0xFFE8E9F1),
-                    child: Icon(
-                      Icons.image,
-                      size: 50 * scaleX,
-                      color: const Color(0xFFC5C6CC),
-                    ),
-                  );
-                },
               ),
             ),
             // Title text - positioned at x: 111, y: 428.59
@@ -77,7 +134,7 @@ class OnboardingScreen extends StatelessWidget {
             // Start button - positioned at x: 37, y: 801.59
             Positioned(
               left: (37 * scaleX),
-              bottom: 24 * scaleY + MediaQuery.of(context).padding.bottom,
+              top: (801.59 * scaleY),
               child: SizedBox(
                 width: 327 * scaleX,
                 height: 48 * scaleY,
@@ -114,8 +171,7 @@ class OnboardingScreen extends StatelessWidget {
                 ),
               ),
             ),
-          ],
-        ),
+        ],
       ),
     );
   }
